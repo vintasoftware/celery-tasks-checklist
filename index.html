@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Great Django apps</title>
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <style type="text/css">
+    body {
+      font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #ededed;
+      padding-top: 0px;
+      font-size: 18px;
+      line-height: 1.42857143;
+      color: #333;
+    }
+
+    input[type=checkbox], input[type=radio] {
+      margin: 4px 0 0;
+      margin-top: 1px\9;
+      line-height: normal;
+    }
+
+    .checklist {
+      display: inline-block;
+      margin-top: 2em;
+      padding: 36px;
+      background-color: #fff;
+    }
+
+    .checklist .checklist-content .contains-task-list {
+      padding-left: 0;
+      list-style-type: none;
+    }
+
+    .checklist .checklist-content li {
+      margin-bottom: 1.5rem;
+    }
+
+    .checklist .checklist-content .contains-task-list input {
+      margin-right: 1rem;
+    }
+  </style>
+</head>
+  <body>
+    <main role="main">
+      <div class="container">
+        <section class="checklist col-xs-12">
+          <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+              <h1>
+                Build great Django apps
+              </h1>
+            </div>
+          </div>
+
+          <div class="checklist-content col-md-offset-1 col-md-10">
+            <div class="announce instapaper_body md" data-path="checklists/feature_card_creation.md" id="file">
+              <article class="markdown-body entry-content" itemprop="text">
+                <ul class="contains-task-list">
+                  <li class="task-list-item">
+                    <input type="checkbox" class="task-list-item-checkbox" disabled=""> Include a direct URL of the product if possible.</li>
+                  <li class="task-list-item">
+                    <input type="checkbox" class="task-list-item-checkbox" disabled=""> Write a small summary describing the feature.</li>
+                  <li class="task-list-item">
+                    <input type="checkbox" class="task-list-item-checkbox" disabled=""> Define the happy-path, describe it, with a flowchart if too complex.
+                  </li>
+                  <li class="task-list-item">
+                    <input type="checkbox" class="task-list-item-checkbox" disabled=""> Tell which documents are related to feature. Link to document card. Specify document page and additional references if necessary.
+                  </li>
+                </ul>
+              </article>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </body>
+
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <script type="text/javascript">
+    $(function() {
+      $(".contains-task-list input").removeAttr("disabled");
+    });
+  </script>
+</html>
