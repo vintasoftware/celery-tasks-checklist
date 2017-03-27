@@ -45,7 +45,7 @@
   <body>
     <main role="main">
       <div class="container">
-        <section class="checklist col-xs-12">
+        <section class="checklist col-md-12">
           <div class="row">
             <div class="col-md-offset-1 col-md-10">
               <h1>
@@ -55,22 +55,20 @@
           </div>
 
           <div class="checklist-content col-md-offset-1 col-md-10">
-            <div class="announce instapaper_body md" data-path="checklists/feature_card_creation.md" id="file">
-              <article class="markdown-body entry-content" itemprop="text">
-                <ul class="contains-task-list">
-                  <li class="task-list-item">
-                    <input type="checkbox" class="task-list-item-checkbox" disabled=""> Include a direct URL of the product if possible.</li>
-                  <li class="task-list-item">
-                    <input type="checkbox" class="task-list-item-checkbox" disabled=""> Write a small summary describing the feature.</li>
-                  <li class="task-list-item">
-                    <input type="checkbox" class="task-list-item-checkbox" disabled=""> Define the happy-path, describe it, with a flowchart if too complex.
-                  </li>
-                  <li class="task-list-item">
-                    <input type="checkbox" class="task-list-item-checkbox" disabled=""> Tell which documents are related to feature. Link to document card. Specify document page and additional references if necessary.
-                  </li>
-                </ul>
-              </article>
-            </div>
+            <article class="markdown-body entry-content" itemprop="text">
+              <ul class="contains-task-list">
+                <li class="task-list-item">
+                  <input type="checkbox" class="task-list-item-checkbox"> Include a direct URL of the product if possible.</li>
+                <li class="task-list-item">
+                  <input type="checkbox" class="task-list-item-checkbox"> Write a small summary describing the feature.</li>
+                <li class="task-list-item">
+                  <input type="checkbox" class="task-list-item-checkbox"> Define the happy-path, describe it, with a flowchart if too complex.
+                </li>
+                <li class="task-list-item">
+                  <input type="checkbox" class="task-list-item-checkbox"> Tell which documents are related to feature. Link to document card. Specify document page and additional references if necessary.
+                </li>
+              </ul>
+            </article>
           </div>
         </section>
       </div>
@@ -84,7 +82,32 @@
 
   <script type="text/javascript">
     $(function() {
-      $(".contains-task-list input").removeAttr("disabled");
+      var checkeds = localStorage.getItem('checkeds');
+      if(!checkeds || checkeds === '') {
+        checkeds = [];
+        localStorage.setItem('checkeds', JSON.stringify(checkeds));
+      }
+
+      checkeds = JSON.parse(checkeds);
+
+      var items = $('.contains-task-list input');
+      items.each(function(i, item) {
+        if(checkeds.indexOf(i) >= 0) {
+          $(item).attr('checked', 'checked');
+        }
+      })
+
+      $('.contains-task-list input').on('click', function() {
+        var items = $('.contains-task-list input');
+        var updated = [];
+        items.each(function(i, item) {
+          if($(item).is(':checked')) {
+            updated.push(i);
+          }
+        })
+
+        localStorage.setItem('checkeds', JSON.stringify(updated));      
+      });
     });
   </script>
 </html>
