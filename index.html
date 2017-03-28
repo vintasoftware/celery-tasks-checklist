@@ -86,9 +86,9 @@
       if(!checkeds || checkeds === '') {
         checkeds = [];
         localStorage.setItem('checkeds', JSON.stringify(checkeds));
+      } else {
+        checkeds = JSON.parse(checkeds);
       }
-
-      checkeds = JSON.parse(checkeds);
 
       var items = $('.contains-task-list input');
       items.each(function(i, item) {
