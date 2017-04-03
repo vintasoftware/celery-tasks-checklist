@@ -3,7 +3,7 @@
 
 -- Check if your app's description fits a few words
 * https://github.com/alex/django-taggit: django-taggit a simpler approach to tagging with Django.
-* https://github.com/ierror/django-js-reverse: Javascript url handling for Django that doesn't hurt.
+* https://github.com/ierror/django-js-reverse: Javascript URL handling for Django that doesn't hurt.
 * https://bitbucket.org/petersanchez/django-impersonate: Simple application to allow superusers to "impersonate" other non-superuser accounts.
 
 -- Check if your app's description has the word "and", is so, try to break it in more apps
@@ -61,7 +61,7 @@ https://github.com/benoitbryon/django-downloadview
 --- Write docs first
 --- Have a README
 --- Provide a quick start tutorial describing the most common use case
---- Separate high level from low level docs
+--- Separate high level from low-level docs
 --- Use gender neutral pronouns
 
 -- Write tests
@@ -74,7 +74,7 @@ https://github.com/benoitbryon/django-downloadview
 
 -- Ship with an example project
 
--- Separate Django abstractions into common used filenames
+-- Separate Django abstractions into commonly used filenames
 * https://gist.github.com/fjsj/65ecfec09cfd2a684d53294d01677b9b
 
 -- Follow the pattern resource_action in URLs names, like password_reset or product_detail
@@ -129,11 +129,11 @@ http://django-haystack.readthedocs.io/en/v2.6.0/tutorial.html#reindex
 --- Leave only presentation logic into template tags, break the rest of logic into helpers
 
 -- Provide default views
---- Don't break the configurability of class-based views, allow existing Django views attrs and methods to be overriden
+--- Don't break the configurability of class-based views, allow existing Django views attrs and methods to be overridden
 --- Break views common logic into mixins
 
 -- Avoid built-in models if possible
---- If you need to have them, provide an abstract model and allow your app to work with the a concrete custom variety
+--- If you need to have them, provide an abstract model and allow your app to work with a concrete custom variety
 * Examples of libs:
 https://django-taggit.readthedocs.io/en/latest/custom_tagging.html#custom-tag
 http://docs.django-blog-zinnia.com/en/develop/how-to/extending_entry_model.html
@@ -141,7 +141,7 @@ https://django-contrib-comments.readthedocs.io/en/latest/custom.html
 --- Break models common parts into abstract models
 --- Don't use model mixins, use abstract models
 * Why: http://stackoverflow.com/questions/3254436/django-model-mixins-inherit-from-models-model-or-from-object
---- When using Generic Foreign Keys, allow them to be overriden by direct FKs
+--- When using Generic Foreign Keys, allow them to be overridden by direct FKs
 * Examples of libs:
 https://django-guardian.readthedocs.io/en/stable/userguide/performance.html#direct-foreign-keys
 https://django-taggit.readthedocs.io/en/latest/custom_tagging.html#using-a-custom-tag-or-through-model
@@ -154,7 +154,7 @@ https://django-taggit.readthedocs.io/en/latest/custom_tagging.html#using-a-custo
 
 -- Isolate query logic into queryset methods, like filter, update and delete logic
 
--- Isolate table-lebel behavior logic into managers methods, like create logic
+-- Isolate table-level behavior logic into managers methods, like create logic
 
 -- Isolate validation logic into validators
 
@@ -165,7 +165,7 @@ https://django-taggit.readthedocs.io/en/latest/custom_tagging.html#using-a-custo
 -- Avoid signals spaghetti code
 
 - App maintenance
--- Be transparent about bugs, specially security issues
+-- Be transparent about bugs, especially security issues
 --- Add security warnings to CHANGELOG, make sure they're parseable by [safety tool](https://github.com/pyupio/safety)
 
 -- Don't abandon the project, give it away
