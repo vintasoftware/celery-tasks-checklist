@@ -1,7 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Great Django apps</title>
+  <title>Django apps checklist</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.3.1/markdown-it.min.js"></script>
+  <script src="/markdown-it-task-lists.min.js"></script>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -28,17 +31,17 @@
       background-color: #fff;
     }
 
-    .checklist .checklist-content .contains-task-list {
-      padding-left: 0;
+    .checklist p {
+      margin-bottom: 0;
+    }
+
+    .checklist .task-list {
       list-style-type: none;
+      padding-left: 0;
     }
 
-    .checklist .checklist-content li {
-      margin-bottom: 1.5rem;
-    }
-
-    .checklist .checklist-content .contains-task-list input {
-      margin-right: 1rem;
+    .checklist .task-list .task-list-item-checkbox {
+      margin-right: 0.3em;
     }
   </style>
 </head>
@@ -56,18 +59,7 @@
 
           <div class="checklist-content col-md-offset-1 col-md-10">
             <article class="markdown-body entry-content" itemprop="text">
-              <ul class="contains-task-list">
-                <li class="task-list-item">
-                  <input type="checkbox" class="task-list-item-checkbox"> Include a direct URL of the product if possible.</li>
-                <li class="task-list-item">
-                  <input type="checkbox" class="task-list-item-checkbox"> Write a small summary describing the feature.</li>
-                <li class="task-list-item">
-                  <input type="checkbox" class="task-list-item-checkbox"> Define the happy-path, describe it, with a flowchart if too complex.
-                </li>
-                <li class="task-list-item">
-                  <input type="checkbox" class="task-list-item-checkbox"> Tell which documents are related to feature. Link to document card. Specify document page and additional references if necessary.
-                </li>
-              </ul>
+              <div>Loading...</div>
             </article>
           </div>
         </section>
@@ -82,32 +74,52 @@
 
   <script type="text/javascript">
     $(function() {
-      var checkeds = localStorage.getItem('checkeds');
-      if(!checkeds || checkeds === '') {
-        checkeds = [];
-        localStorage.setItem('checkeds', JSON.stringify(checkeds));
-      } else {
-        checkeds = JSON.parse(checkeds);
+      function bindCheckBehavior() {
+        var checkeds = localStorage.getItem('checkeds');
+        if (!checkeds || checkeds === '') {
+          checkeds = [];
+          localStorage.setItem('checkeds', JSON.stringify(checkeds));
+        } else {
+          checkeds = JSON.parse(checkeds);
+        }
+
+        var items = $('.entry-content input');
+        items.each(function (i, item) {
+          if (checkeds.indexOf(i) >= 0) {
+            $(item).attr('checked', 'checked');
+          }
+        });
+
+        $('.entry-content input').on('change', function() {
+          var items = $('.entry-content input');
+          var updated = [];
+          items.each(function (i, item) {
+            if (this.checked) {
+              updated.push(i);
+            }
+          });
+
+          localStorage.setItem('checkeds', JSON.stringify(updated));
+        });
       }
 
-      var items = $('.contains-task-list input');
-      items.each(function(i, item) {
-        if(checkeds.indexOf(i) >= 0) {
-          $(item).attr('checked', 'checked');
-        }
-      })
-
-      $('.contains-task-list input').on('click', function() {
-        var items = $('.contains-task-list input');
-        var updated = [];
-        items.each(function(i, item) {
-          if($(item).is(':checked')) {
-            updated.push(i);
-          }
-        })
-
-        localStorage.setItem('checkeds', JSON.stringify(updated));      
-      });
+      var md = window.markdownit({
+        'breaks': true,
+        'linkify': true
+      }).use(window.markdownitTaskLists, {enabled: true});
+      function renderChecklist() {
+        $.ajax('/checklist.md', {
+          method: 'GET',
+          dataType: 'text'
+        }).done(function (text) {
+          $('article.entry-content').html(md.render(text));
+          bindCheckBehavior();
+        }).fail(function () {
+          console.error("Failed to GET checklist.md, trying again in 1 sec...")
+          setTimeout(renderChecklist, 1000)
+        });  
+      }
+      renderChecklist();
     });
   </script>
 </html>
