@@ -1,8 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Django apps checklist</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta charset="utf-8">
+  <title>Django Apps Checklist</title>
+  <link rel="shortcut icon" href="/assets/favicon.png" />
   <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.3.1/markdown-it.min.js"></script>
   <script src="/markdown-it-task-lists.min.js"></script>
 
@@ -11,11 +14,22 @@
   <style type="text/css">
     body {
       font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      background-color: #ededed;
+      background-color: #44B78B;
       padding-top: 0px;
       font-size: 18px;
       line-height: 1.42857143;
-      color: #333;
+      color: #0C4B33;
+    }
+
+    .special-bg {
+      background: #44b78b;
+      padding: 0;
+      margin: 0;
+    }
+
+    .special-bg .task-list li {
+      padding: 0;
+      margin: 2rem 0
     }
 
     input[type=checkbox], input[type=radio] {
@@ -26,9 +40,6 @@
 
     .checklist {
       display: inline-block;
-      margin-top: 2em;
-      padding: 36px;
-      background-color: #fff;
     }
 
     .checklist p {
@@ -41,35 +52,95 @@
     }
 
     .checklist .task-list .task-list-item-checkbox {
+      height: 18px;
       margin-right: 0.3em;
+    }
+
+    .logo {
+      margin: 6rem 0 3rem;
+      text-align: center;
+    }
+
+    .logo img {
+      max-width: 380px;
+      width: 100%;
+    }
+
+    footer {
+      margin-top: 4rem;
+      background: #0c4b33;
     }
 
     footer p {
       text-align: center;
+      color: #44B78B;
       margin-top: 1rem;
+      font-size: 14px;
     }
 
-    .m-t-1 {
-      margin-top: 1rem;
+    h1, h2, p {
+      color: #0C4B33;
+    }
+
+    li {
+      list-style: none;
+      margin-bottom: 2rem;
+    }
+
+    p {
+      font-size: 25px;
+    }
+
+    a {
+      color: #fff;
+      text-decoration: underline;
+    }
+
+    h1 {
+      font-size: 46px;
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    h2 {
+      font-size: 34px;
+      border-bottom: 5px solid #0c4b33;
+      padding-bottom: 0;
+      margin-bottom: 3rem;
+      margin-top: 4rem;
+    }
+
+    ul li ul li{
+      background-color: rgba(0, 0, 0, 0.10);
+      padding: 2rem 3rem;
+      margin-top: 2rem;
+    }
+
+    .task-list-item {
+      background-color: #44b78b;
     }
   </style>
 </head>
   <body>
     <main role="main">
       <div class="container">
-        <section class="checklist col-md-12">
+        <section class="checklist col-xs-12">
+          <div class="logo">
+            <img src="/assets/django-app-checklist.png" alt="django app checklist">
+          </div>
           <div class="row">
             <div class="col-md-offset-1 col-md-10">
               <h1>
-                Checklist to build great Django apps
+                Checklist to Build Great Django Apps
               </h1>
             </div>
           </div>
-
-          <div class="checklist-content col-md-offset-1 col-md-10">
-            <article class="markdown-body entry-content" itemprop="text">
-              <div>Loading...</div>
-            </article>
+          <div class="row">
+            <div class="checklist-content col-md-offset-1 col-md-10">
+              <article class="markdown-body entry-content" itemprop="text">
+                <div>Loading...</div>
+              </article>
+            </div>
           </div>
         </section>
       </div>
@@ -131,10 +202,11 @@
         }).done(function (text) {
           $('article.entry-content').html(md.render(text));
           bindCheckBehavior();
+          $('li ul.task-list').parent().addClass('special-bg')
         }).fail(function () {
           console.error("Failed to GET checklist.md, trying again in 1 sec...")
           setTimeout(renderChecklist, 1000)
-        });  
+        });
       }
       renderChecklist();
     });
