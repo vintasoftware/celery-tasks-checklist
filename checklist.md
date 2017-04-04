@@ -3,9 +3,9 @@
 
 - [ ] Check if your app's description fits a few words
   * Examples:  
-  https://github.com/alex/django-taggit: django-taggit a simpler approach to tagging with Django.  
-  https://github.com/ierror/django-js-reverse: Javascript URL handling for Django that doesn't hurt.  
-  https://bitbucket.org/petersanchez/django-impersonate: Simple application to allow superusers to "impersonate" other non-superuser accounts.  
+  [https://github.com/alex/django-taggit:](https://github.com/alex/django-taggit) django-taggit a simpler approach to tagging with Django.  
+  [https://github.com/ierror/django-js-reverse:](https://github.com/ierror/django-js-reverse) Javascript URL handling for Django that doesn't hurt.  
+  [https://bitbucket.org/petersanchez/django-impersonate:](https://bitbucket.org/petersanchez/django-impersonate) Simple application to allow superusers to "impersonate" other non-superuser accounts.  
 
 - [ ] Check if your app's description has the word "and", is so, try to break it in more apps
 
