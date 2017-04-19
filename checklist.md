@@ -79,7 +79,7 @@
 
 - [ ] Follow the pattern resource_action in URLs names, like password_reset or product_detail
 
-- [ ] Never rely on Django default user model
+- [ ] Never rely on Django default user model, support [custom user models](https://docs.djangoproject.com/en/dev/topics/auth/customizing/#specifying-a-custom-user-model)
   * Example of lib that supports custom user models: https://django-registration.readthedocs.io/en/2.2/custom-user.html
 
 - [ ] Provides declarative usage
