@@ -119,7 +119,7 @@
 
 - [ ] Fail-fast
   * - [ ] Raise `ImproperlyConfigured` if the developer makes a mistake on the config
-    * For example, [django-filter raises `ImproperlyConfigured`](https://github.com/carltongibson/django-filter/blob/develop/django_filters/views.py#L18-L28) when the developer forgets to specify `filterset_class` or `model` in a `FilterView`
+    * For example, [django-filter raises `ImproperlyConfigured`](https://github.com/carltongibson/django-filter/blob/0883cb6b25cd3bb2fa337fb9c54f0a3d2159f676/django_filters/views.py#L18-L28) when the developer forgets to specify `filterset_class` or `model` in a `FilterView`
   * - [ ] Raise `TypeError` or `ValueError` when the app gets an invalid argument
 
 - [ ] [Internationalize](https://docs.djangoproject.com/en/dev/topics/i18n/translation/) (I18N) your strings

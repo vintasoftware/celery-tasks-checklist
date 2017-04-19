@@ -18,7 +18,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/8.3.1/markdown-it.min.js"></script>
   <script src="/markdown-it-task-lists.min.js"></script>
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+    integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+    crossorigin="anonymous">
 
   <style type="text/css">
     body {
@@ -119,7 +122,7 @@
       margin-top: 4rem;
     }
 
-    ul li ul li{
+    ul li ul li {
       background-color: rgba(0, 0, 0, 0.10);
       padding: 2rem 3rem;
       margin-top: 2rem;
@@ -148,6 +151,7 @@
                 Checklist to Build Great<br/>
                 Reusable Django Apps
               </h1>
+              <p>Note: checkboxes below are saved in localStorage. Feel free to come back.</p>
             </div>
           </div>
           <div class="row">
@@ -173,36 +177,40 @@
   <script src="https://code.jquery.com/jquery-3.2.1.min.js"
     integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
     crossorigin="anonymous"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+    integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
 
   <script type="text/javascript">
     $(function() {
       function bindCheckBehavior() {
-        var checkeds = localStorage.getItem('checkeds');
-        if (!checkeds || checkeds === '') {
-          checkeds = [];
-          localStorage.setItem('checkeds', JSON.stringify(checkeds));
+        var checkedsDict = localStorage.getItem('checkedsDict');
+        if (!checkedsDict || checkedsDict === '') {
+          checkedsDict = {};
+          localStorage.setItem('checkedsDict', JSON.stringify(checkedsDict));
         } else {
-          checkeds = JSON.parse(checkeds);
+          checkedsDict = JSON.parse(checkedsDict);
         }
 
-        var items = $('.entry-content input');
-        items.each(function (i, item) {
-          if (checkeds.indexOf(i) >= 0) {
+        var $items = $('.entry-content input.task-list-item-checkbox');
+        $items.each(function (i, item) {
+          var itemKey = $(item).parent().text();
+          if (checkedsDict[itemKey]) {
             $(item).attr('checked', 'checked');
           }
         });
 
         $('.entry-content input').on('change', function() {
-          var items = $('.entry-content input');
-          var updated = [];
-          items.each(function (i, item) {
+          var $items = $('.entry-content input');
+          var updatedCheckedsDict = {};
+          $items.each(function (i, item) {
+            var itemKey = $(item).parent().text();
             if (this.checked) {
-              updated.push(i);
+              updatedCheckedsDict[itemKey] = true;
             }
           });
 
-          localStorage.setItem('checkeds', JSON.stringify(updated));
+          localStorage.setItem('checkedsDict', JSON.stringify(updatedCheckedsDict));
         });
       }
 
@@ -210,6 +218,7 @@
         'breaks': true,
         'linkify': false
       }).use(window.markdownitTaskLists, {enabled: true});
+
       function renderChecklist() {
         $.ajax('/checklist.md', {
           method: 'GET',
