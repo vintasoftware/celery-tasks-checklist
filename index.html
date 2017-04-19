@@ -208,7 +208,7 @@
 
       var md = window.markdownit({
         'breaks': true,
-        'linkify': true
+        'linkify': false
       }).use(window.markdownitTaskLists, {enabled: true});
       function renderChecklist() {
         $.ajax('/checklist.md', {
