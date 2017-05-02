@@ -1,2 +1,2 @@
-# Django Apps Checklist
-Useful checklist for build great Django apps. Feel free to contribute!
+# Celery tasks checklist
+Useful checklist for building great Celery tasks. Feel free to contribute!
