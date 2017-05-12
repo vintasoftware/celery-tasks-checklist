@@ -25,15 +25,15 @@ def my_task(user):
 > "An operation (or set of operations) is atomic ... if it appears to the rest of the system to occur instantaneously. Atomicity is a guarantee of isolation from concurrent processes. Additionally, atomic operations commonly have a succeed-or-fail definition—they either successfully change the state of the system, or have no apparent effect." - Wikipedia
 - [ ] Retry when possible. But make sure tasks are idempotent and atomic before doing so. [(Retrying)](http://docs.celeryproject.org/en/latest/userguide/tasks.html#retrying)
 - [ ] Set `retry_limit` to avoid broken tasks to keep retrying forever.
-- [ ] Exponentially backoff if things look like they are not going to get fixed soon. Throw in a randon factor to avoid cluttering services.
+- [ ] Exponentially backoff if things look like they are not going to get fixed soon. Throw in a random factor to avoid cluttering services.
 ```
-def exponencial_backoff(task_self):
+def exponential_backoff(task_self):
     minutes = task_self.default_retry_delay / 60
     rand = random.uniform(minutes, minutes * 1.3)
     return int(rand ** task_self.request.retries) * 60
 
 # in the task
-self.retry(exc=e, countdown=exponencial_backoff(self))
+self.retry(exc=e, countdown=exponential_backoff(self))
 ```
 - [ ] For tasks that require high level of reliability, use `acks_late` in combination with `retry`. Again, make sure taks are idempotent and atomic. [(Should I use retry or acks_late?)](http://docs.celeryproject.org/en/latest/faq.html#faq-acks-late-vs-retry)
 - [ ] Set hard and soft time limits. Recover gracefully if things take longer than expected.
@@ -56,7 +56,7 @@ def my_task():
 - [ ] Log as much as possible.
 - [ ] In case of failure, make sure stack traces get logged and people get notified (services like [Sentry](https://sentry.io) are a good idea).
 - [ ] Monitor activity using Flower. [(Flower: Real-time Celery web-monitor)](http://docs.celeryproject.org/en/latest/userguide/monitoring.html#flower-real-time-celery-web-monitor)
-- [ ] Use `task_aways_eager` to test your tasks are geting called.
+- [ ] Use `task_always_eager` to test your tasks are geting called.
 
 ## Resources
 
