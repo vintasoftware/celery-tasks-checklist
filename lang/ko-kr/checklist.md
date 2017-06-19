@@ -1,7 +1,7 @@
 ## Best Practices
 
 - [ ] [RabbitMQ](https://www.rabbitmq.com/) 또는 [Redis](https://redis.io/)를 브로커(broker)로 쓰세요. (상용 환경에서 RDB를 브로커로 쓰지 마세요.)
-- [ ] 복잡한 object를 태스크(task)에 파라미터(parameter)로 넘기지 마세요. (예를 들면 Django의 model objects를 파라미터로 사용하는 것을 피하세요.
+- [ ] 복잡한 객체(object)를 태스크(task)에 파라미터(parameter)로 사용하지 마세요. (예를 들면 Django의 모델 객체)
 
 ```
 # 좋은 예시
@@ -20,14 +20,14 @@ def my_task(user):
     # ...
 ```
 - [ ] 태스크 안에서 태스크를 기다리게 하지 마세요.
-- [ ] 태스크가 멱등성을 가지도록 지향하세요.
+- [ ] 태스크가 멱등성을 가지도록 하세요.
 > "멱등성(冪等性, 영어: idempotence)은 수학이나 전산학에서 연산의 한 성질을 나타내는 것으로, 연산을 여러 번 적용하더라도 결과가 달라지지 않는 성질을 의미한다" - Wikipedia
-- [ ] 태스크가 원자성을 가지도록 지향하세요.
+- [ ] 태스크가 원자성을 가지도록 하세요.
 > "어떠한 작업이 실행될때 언제나 완전하게 진행되어 종료되거나, 그럴 수 없는 경우 실행을 하지 않는 경우를 말한다. 원자성을 가지는 작업은 실행되어 진행되다가 종료하지 않고 중간에서 멈추는 경우는 있을 수 없다." - Wikipedia
 - [ ] 가능하면 재시도하세요. 단, 실행전에 멱등성과 원자성을 가지는 것을 확실히 하세요.
 [(Retrying)](http://docs.celeryproject.org/en/latest/userguide/tasks.html#retrying)
-- [ ] `retry_limit`를 설정해서 문제있는 태스크가 계속 재시도하지 않도록 하세요. 
-- [ ] 태스크가 금방 고쳐질 것 같지 않다면 재시도 횟수를 지수적으로 감소시키세요.([exponentially backoff](https://en.wikipedia.org/wiki/Exponential_backoff)) 혼란스러운 서비스를 피하려면 랜덤 요인을 사용하세요.(수정 필요한 문장 HELP!)
+- [ ] `retry_limit`를 설정해서 문제 있는 태스크가 계속 재시도하지 않도록 하세요. 
+- [ ] 태스크가 금방 고쳐질 것 같지 않다면 재시도 횟수를 지수적으로 감소시키세요.([exponentially backoff](https://en.wikipedia.org/wiki/Exponential_backoff)) 혼란스러운 서비스를 피하려면 임의의 요소를 사용하세요.
 
 ```
 def exponential_backoff(task_self):
@@ -39,7 +39,7 @@ def exponential_backoff(task_self):
 self.retry(exc=e, countdown=exponential_backoff(self))
 ```
 - [ ] 높은 신뢰도가 필요한 태스크에서는 `acks_late`와 `retry`를 함께 사용하세요. 물론 멱등성과 원자성을 가지도록 해야합니다. [(Should I use retry or acks_late?)](http://docs.celeryproject.org/en/latest/faq.html#faq-acks-late-vs-retry)
-- [ ] 최대 제한([hard limit]())과 경고 제한([soft limit]()) 시간을 설정하세요. 태스크가 예상보다 오래 걸린다면 우아하게 복구하세요. 
+- [ ] 최대 제한([hard limit]())과 경고 제한([soft limit]()) 시간을 설정하세요. 태스크가 예상보다 오래 걸린다면 완만하게 복구하세요. 
 
 ```
 from celery.exceptions import SoftTimeLimitExceeded
