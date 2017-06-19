@@ -1,7 +1,7 @@
 ## Best Practices
 
-- [ ] [RabbitMQ](https://www.rabbitmq.com/)와 [Redis](https://redis.io/)를 브로커(broker)로 쓰세요. (상용 환경에서 RDB를 브로커로 쓰지 마세요.)
-- [ ] 복잡한 object를 태스크에 파라미터로 넘기지 마세요. (예를 들면 Django의 model objects를 파라미터러 사용하는 것을 피하세요.
+- [ ] [RabbitMQ](https://www.rabbitmq.com/) 또는 [Redis](https://redis.io/)를 브로커(broker)로 쓰세요. (상용 환경에서 RDB를 브로커로 쓰지 마세요.)
+- [ ] 복잡한 object를 태스크(task)에 파라미터(parameter)로 넘기지 마세요. (예를 들면 Django의 model objects를 파라미터로 사용하는 것을 피하세요.
 
 ```
 # 좋은 예시
@@ -20,10 +20,10 @@ def my_task(user):
     # ...
 ```
 - [ ] 태스크 안에서 태스크를 기다리게 하지 마세요.
-- [ ] 태스크가 멱등이 되도록 지향하세요.
-> "Idempotence is the property of certain operations in mathematics and computer science, that can be applied multiple times without changing the result beyond the initial application." - Wikipedia
+- [ ] 태스크가 멱등성을 가지도록 지향하세요.
+> "멱등성(冪等性, 영어: idempotence)은 수학이나 전산학에서 연산의 한 성질을 나타내는 것으로, 연산을 여러 번 적용하더라도 결과가 달라지지 않는 성질을 의미한다" - Wikipedia
 - [ ] 태스크가 원자성을 가지도록 지향하세요.
-> "An operation (or set of operations) is atomic ... if it appears to the rest of the system to occur instantaneously. Atomicity is a guarantee of isolation from concurrent processes. Additionally, atomic operations commonly have a succeed-or-fail definition—they either successfully change the state of the system, or have no apparent effect." - Wikipedia
+> "어떠한 작업이 실행될때 언제나 완전하게 진행되어 종료되거나, 그럴 수 없는 경우 실행을 하지 않는 경우를 말한다. 원자성을 가지는 작업은 실행되어 진행되다가 종료하지 않고 중간에서 멈추는 경우는 있을 수 없다." - Wikipedia
 - [ ] 가능하면 재시도하세요. 단, 실행전에 멱등성과 원자성을 가지는 것을 확실히 하세요.
 [(Retrying)](http://docs.celeryproject.org/en/latest/userguide/tasks.html#retrying)
 - [ ] `retry_limit`를 설정해서 문제있는 태스크가 계속 재시도하지 않도록 하세요. 
@@ -51,16 +51,16 @@ def my_task():
     except SoftTimeLimitExceeded:
         recover()
 ```
-- [ ] 처리량과 확정성 제어하기 위해서 큐를 여러개 사용하세요. [(Routing Tasks)](http://docs.celeryproject.org/en/latest/userguide/routing.html)
-- [ ] 기본적인 작업정의하려면 베이스 태스크 클래스를 상속하세요. [(Custom Task Classes)](http://docs.celeryproject.org/en/latest/userguide/tasks.html#custom-task-classes)
+- [ ] 처리량과 확장성을 제어하기 위해서 큐를 여러개 사용하세요. [(Routing Tasks)](http://docs.celeryproject.org/en/latest/userguide/routing.html)
+- [ ] 기본적인 작업을 정의하려면 기본 태스크 클래스를 만들어 상속하세요. [(Custom Task Classes)](http://docs.celeryproject.org/en/latest/userguide/tasks.html#custom-task-classes)
 - [ ] 태스크 흐름과 동시성을 제어하기 위해서 Canvas 기능을 사용하세요. [(Canvas: Designing Work-flows)](http://docs.celeryproject.org/en/latest/userguide/canvas.html)
 
 ## Monitoring & Tests
 
 - [ ] 가능한한 더 많은 로그를 남기세요. 
 - [ ] 실패했을때 stack trace를 남기고 사람이 알 수 있도록 하세요. ([Sentry](https://sentry.io) 같은 서비스를 쓰는게 좋아요) 
-- [ ] [(Flower: Real-time Celery web-monitor)](http://docs.celeryproject.org/en/latest/userguide/monitoring.html#flower-real-time-celery-web-monitor)를 사용해서 모니터링 하세요. 
-- [ ] 당신의 태스크 호출을 테스트할때 `task_always_eager`를 사용하세요.
+- [ ] [(Flower: Real-time Celery web-monitor)](http://docs.celeryproject.org/en/latest/userguide/monitoring.html#flower-real-time-celery-web-monitor)를 사용해서 샐러리 모니터링을 하세요. 
+- [ ] 태스크 호출을 테스트할때 `task_always_eager`를 사용하세요.
 
 ## Resources
 
