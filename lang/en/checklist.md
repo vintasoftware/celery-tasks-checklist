@@ -47,7 +47,7 @@ def my_task():
     except SoftTimeLimitExceeded:
         recover()
 ```
-- [ ] Use multiple queues to have more control over thruoghput and make things more scalable. [(Routing Tasks)](http://docs.celeryproject.org/en/latest/userguide/routing.html)
+- [ ] Use multiple queues to have more control over throughput and make things more scalable. [(Routing Tasks)](http://docs.celeryproject.org/en/latest/userguide/routing.html)
 - [ ] Extend the base task class to define default behaviour. [(Custom Task Classes)](http://docs.celeryproject.org/en/latest/userguide/tasks.html#custom-task-classes)
 - [ ] Use canvas features to control task flows and deal with concurrency. [(Canvas: Designing Work-flows)](http://docs.celeryproject.org/en/latest/userguide/canvas.html)
 
