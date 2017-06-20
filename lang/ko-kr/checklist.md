@@ -57,10 +57,10 @@ def my_task():
 
 ## Monitoring & Tests
 
-- [ ] 가능한한 더 많은 로그를 남기세요. 
-- [ ] 실패했을때 stack trace를 남기고 사람이 알 수 있도록 하세요. ([Sentry](https://sentry.io) 같은 서비스를 쓰는게 좋아요) 
+- [ ] 가능한 한 더 많은 로그를 남기세요. 
+- [ ] 실패했을 때 stack trace를 남기고 사람이 알 수 있도록 하세요. ([Sentry](https://sentry.io) 같은 서비스를 쓰는게 좋아요) 
 - [ ] [Flower: Real-time Celery web-monitor](http://docs.celeryproject.org/en/latest/userguide/monitoring.html#flower-real-time-celery-web-monitor)를 사용해서 샐러리 모니터링을 하세요. 
-- [ ] 태스크 호출을 테스트할때 `task_always_eager`를 사용하세요.
+- [ ] 태스크 호출을 테스트할 때 `task_always_eager`를 사용하세요.
 
 ## Resources
 
