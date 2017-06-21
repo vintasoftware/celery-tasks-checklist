@@ -54,7 +54,7 @@ def my_task():
 
 ## Monitoração & Testes
 
-- [ ] Faça logging na medida do possível.
+- [ ] Faça logging na medida do possível. Use `get_task_logger` para automaticamente adicionar o nome e o id único da sua task aos logs.
 - [ ] No caso de falha, tenha certeza de que os traços de pilha (stack traces) tenham logs e que pessoas sejam notificadas (serviços como [Sentry](https://sentry.io) é uma boa idéia).
 - [ ] Monitore atividades usando Flower. [(Flower: Real-time Celery web-monitor)](http://docs.celeryproject.org/en/latest/userguide/monitoring.html#flower-real-time-celery-web-monitor)
 - [ ] Use `task_aways_eager` para testar suas tarefas que estão sendo chamadas.
