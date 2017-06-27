@@ -53,7 +53,7 @@ def my_task():
 
 ## Monitoring & Tests
 
-- [ ] Log as much as possible.
+- [ ] Log as much as possible. Use `get_task_logger` to automatically get the task name and unique id as part of the logs.
 - [ ] In case of failure, make sure stack traces get logged and people get notified (services like [Sentry](https://sentry.io) are a good idea).
 - [ ] Monitor activity using Flower. [(Flower: Real-time Celery web-monitor)](http://docs.celeryproject.org/en/latest/userguide/monitoring.html#flower-real-time-celery-web-monitor)
 - [ ] Use `task_always_eager` to test your tasks are geting called.
