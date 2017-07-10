@@ -224,11 +224,13 @@
 
   <script type="text/javascript">
     $(function() {
-      function bindCheckBehavior() {
-        var checkedsDict = localStorage.getItem('checkedsDict');
+      function bindCheckBehavior(lang) {
+        var langSuffix = lang === 'en' ? '' : lang;
+        var checkedsDictKey = 'checkedsDict' + langSuffix;
+        var checkedsDict = localStorage.getItem(checkedsDictKey);
         if (!checkedsDict || checkedsDict === '') {
           checkedsDict = {};
-          localStorage.setItem('checkedsDict', JSON.stringify(checkedsDict));
+          localStorage.setItem(checkedsDictKey, JSON.stringify(checkedsDict));
         } else {
           checkedsDict = JSON.parse(checkedsDict);
         }
@@ -251,7 +253,7 @@
             }
           });
 
-          localStorage.setItem('checkedsDict', JSON.stringify(updatedCheckedsDict));
+          localStorage.setItem(checkedsDictKey, JSON.stringify(updatedCheckedsDict));
         });
       }
 
@@ -267,7 +269,7 @@
       }).done(function (text) {
         $('a[data-lang="' + lang + '"]').addClass('active');
         $('article.entry-content').html(md.render(text));
-        bindCheckBehavior();
+        bindCheckBehavior(lang);
         $('li ul.task-list').parent().addClass('special-bg')
       }).fail(function () {
         console.error("Failed to GET checklist.md, trying again in 1 sec...")
