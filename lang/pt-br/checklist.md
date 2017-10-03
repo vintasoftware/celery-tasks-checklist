@@ -34,7 +34,7 @@ def exponencial_backoff(task_self):
     return int(rand ** task_self.request.retries) * 60
 
 # na tarefa
-self.retry(exc=e, countdown=exponencial_backoff(self))
+raise self.retry(exc=e, countdown=exponencial_backoff(self))
 ```
 - [ ] Para tarefas que requere alto nível de confiabilidade, use `acks_late` em combinação com `retry`. Novamente, tenha certeza de que são tarefas idempotentes e atômicas. [(Should I use retry or acks_late?)](http://docs.celeryproject.org/en/latest/faq.html#faq-acks-late-vs-retry)
 - [ ] Defina tempos de limite duros e suaves. Recupere graciosamente se as coisas demorarem mais tempo que o esperado.
