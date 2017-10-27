@@ -35,6 +35,7 @@ def exponential_backoff(task_self):
 # in the task
 raise self.retry(exc=e, countdown=exponential_backoff(self))
 ```
+- [ ] Use `[autoretry_for](http://docs.celeryproject.org/en/master/userguide/tasks.html#automatic-retry-for-known-exceptions)` to reduce the boilerplate code for retrying tasks. 
 - [ ] For tasks that require high level of reliability, use `acks_late` in combination with `retry`. Again, make sure taks are idempotent and atomic. [(Should I use retry or acks_late?)](http://docs.celeryproject.org/en/latest/faq.html#faq-acks-late-vs-retry)
 - [ ] Set hard and soft time limits. Recover gracefully if things take longer than expected.
 ```
