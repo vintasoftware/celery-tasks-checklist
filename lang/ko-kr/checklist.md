@@ -38,6 +38,8 @@ def exponential_backoff(task_self):
 # in the task
 raise self.retry(exc=e, countdown=exponential_backoff(self))
 ```
+- [ ] 재시도 태스크에서 boilerplate code를 줄이기 위해서 [`autoretry_for`](http://docs.celeryproject.org/en/master/userguide/tasks.html#automatic-retry-for-known-exceptions) 를 사용하세요.
+- [ ] 재시도 횟수를 지수적으로 감소시킬때 boilerplate code를 줄이기 위해서 [`retry_backoff`](http://docs.celeryproject.org/en/master/userguide/tasks.html#Task.retry_backoff) 를 사용하세요.
 - [ ] 높은 신뢰도가 필요한 태스크에서는 `acks_late`와 `retry`를 함께 사용하세요. 물론 멱등성과 원자성을 가지도록 해야합니다. [(Should I use retry or acks_late?)](http://docs.celeryproject.org/en/latest/faq.html#faq-acks-late-vs-retry)
 - [ ] 최대 제한([hard limit]())과 경고 제한([soft limit]()) 시간을 설정하세요. 태스크가 예상보다 오래 걸린다면 완만하게 복구하세요. 
 
