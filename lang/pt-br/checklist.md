@@ -22,7 +22,6 @@ def my_task(user):
 - [ ] Prefira tarefas indempotentes.
 > "Em matemática e ciência da computação, a idempotência é a propriedade que algumas operações têm de poderem ser aplicadas várias vezes sem que o valor do resultado se altere após a aplicação inicial." - Wikipedia
 - [ ] Prefira tarefas atômicas.
-- [ ] Prefer atomic tasks.
 > "Transação Atômica, em ciência da computação, é uma operação, ou conjunto de operações, em uma base de dados, ou em qualquer outro sistema computacional, que deve ser executada completamente em caso de sucesso, ou ser abortada completamente em caso de erro." - Wikipedia
 - [ ] Tente novamente quando possível. Mas tenha certeza que as tarefas são indempotentes e atômicos antes de fazê-lo. [(Retrying)](http://docs.celeryproject.org/en/latest/userguide/tasks.html#retrying)
 - [ ] Defina `retry_limit` para evitar tarefas quebradas de fazer tentativas infinitas.
