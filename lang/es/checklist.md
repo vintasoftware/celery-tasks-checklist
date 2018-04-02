@@ -61,6 +61,9 @@ def my_task():
 
 ## Recursos
 
+- [Celery: an overview of the architecture and how it works](https://www.vinta.com.br/blog/2017/celery-overview-archtecture-and-how-it-works/) por [Vinta](https://www.vinta.com.br/)
+- [Celery in the wild: tips and tricks to run async tasks in the real world](https://www.vinta.com.br/blog/2018/celery-wild-tips-and-tricks-run-async-tasks-real-world/) por [Vinta](https://www.vinta.com.br/)
+- [Dealing with resource-consuming tasks on Celery](https://www.vinta.com.br/blog/2018/dealing-resource-consuming-tasks-celery/) por [Vinta](https://www.vinta.com.br/)
 - [Trucos y Mejores Prácticas](http://celery.readthedocs.io/en/latest/userguide/tasks.html#tips-and-best-practices) de la documentación oficial.
 - [Colas de Tareas](https://www.fullstackpython.com/task-queues.html) por Full Stack Python
 - [Flower: Monitor de Celery en tiempo real](http://celery.readthedocs.io/en/latest/userguide/monitoring.html#flower-real-time-celery-web-monitor) de la documentación oficial.
