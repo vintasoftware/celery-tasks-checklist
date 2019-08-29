@@ -49,12 +49,12 @@
     ```
   * [ ] Use múltiplas filas para ter mais controle sobre a taxa de transferência e gerar mais escalabilidade. [(Routing Tasks)](http://docs.celeryproject.org/en/latest/userguide/routing.html)
   * [ ] Estenda a classe de tarefa base para definir comportamentos padrão. [(Custom Task Classes)](http://docs.celeryproject.org/en/latest/userguide/tasks.html#custom-task-classes)
-  * [ ] Use recursos da tela para controlar fluxos de tarefas e lidar com concorrência. [(Canvas: Designing Work-flows)](http://docs.celeryproject.org/en/latest/userguide/canvas.html)
+  * [ ] Use recursos de `canvas` para controlar fluxos de tarefas e lidar com concorrência. [(Canvas: Designing Work-flows)](http://docs.celeryproject.org/en/latest/userguide/canvas.html)
 
 ## 2. Monitoração & Testes
 
   * [ ] Faça logging na medida do possível. Use `get_task_logger` para automaticamente adicionar o nome e o id único da sua task aos logs.
-  * [ ] No caso de falha, tenha certeza de que os traços de pilha (stack traces) tenham logs e que pessoas sejam notificadas (serviços como [Sentry](https://sentry.io) é uma boa idéia).
+  * [ ] No caso de falha, tenha certeza de que `stack traces` sejam logados e que pessoas sejam notificadas (serviços como [Sentry](https://sentry.io) é uma boa idéia).
   * [ ] Monitore atividades usando Flower. [(Flower: Real-time Celery web-monitor)](http://docs.celeryproject.org/en/latest/userguide/monitoring.html#flower-real-time-celery-web-monitor)
   * [ ] Use `task_aways_eager` para testar suas tarefas que estão sendo chamadas.
 
