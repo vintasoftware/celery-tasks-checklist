@@ -1,7 +1,7 @@
 ## 1. Boas Práticas
 
-  * [ ] Prefira [RabbitMQ](https://www.rabbitmq.com/) ou [Redis](https://redis.io/) como broker (nunca use bando de dados relacional como broker de produção)
-  * [ ] Não use objetos completos em tarefas com parâmetros. Exemplo: Evite objetos Django model:
+  * [ ] Prefira [RabbitMQ](https://www.rabbitmq.com/) ou [Redis](https://redis.io/) como broker (nunca use banco de dados relacional como broker de produção)
+  * [ ] Não use objetos complexos como parametros em tarefas. Exemplo: Evite objetos Django model:
     ```
     # Bom
     @app.task
